@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "43711099599",
+    "firebase_url": "https://lemsic-c6be5.firebaseio.com",
+    "project_id": "lemsic-c6be5",
+    "storage_bucket": "lemsic-c6be5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:43711099599:android:93c5af543024476a",
+        "android_client_info": {
+          "package_name": "test.test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "43711099599-hkacvq9jdjhmo9hqmihk2k3rrbqbb756.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "test.test",
+            "certificate_hash": "0512AF3AC25D4303BDD1D01B632D4AEBB1D103BD"
+          }
+        },
+        {
+          "client_id": "43711099599-sn8cr97ts3bs4812sf4pkjoie8nqspe4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9nRjTNGwGJAj_G3SluZFfb7Vly_dEPNg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "43711099599-sn8cr97ts3bs4812sf4pkjoie8nqspe4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
