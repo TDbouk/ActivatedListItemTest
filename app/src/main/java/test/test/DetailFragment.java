@@ -8,7 +8,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -84,6 +86,13 @@ public class DetailFragment extends Fragment {
 
         listView = (ListView) rootView.findViewById(R.id.listview);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                onDetailFragmentInteraction((String)listView.getItemAtPosition(i));
+            }
+        });
 
         return rootView;
     }

@@ -57,14 +57,14 @@ public class TermListAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
+/*
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.onDetailFragmentInteraction((String) holder.term.getText());
+//                context.onDetailFragmentInteraction((String) holder.term.getText());
             }
         });
-
+*/
         holder.term.setText(termsList.get(i));
         return convertView;
     }
