@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -107,6 +108,8 @@ public class DetailFragment extends Fragment {
             selectedItemPosition = savedInstanceState.getInt(EXTRA_SELECTED_ITEM_POSITION);
             if (selectedItemPosition != ListView.INVALID_POSITION) {
                 listView.smoothScrollToPosition(selectedItemPosition);
+                //listView.setSelection(selectedItemPosition);
+                Log.d("DETAILFRAG", "Smooth scroll to " + selectedItemPosition);
             }
         }
 
