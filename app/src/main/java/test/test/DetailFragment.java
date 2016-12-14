@@ -4,13 +4,11 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -21,11 +19,20 @@ public class DetailFragment extends Fragment {
     private ArrayList<String> mDetailList;
     private TermListAdapter adapter;
     private ListView listView;
+    private int selectedItemPosition = ListView.INVALID_POSITION;
+    private final String EXTRA_SELECTED_ITEM_POSITION = "selected_item_position";
 
     private OnDetailFragmentInteractionListener mListener;
 
     public DetailFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        if (selectedItemPosition != ListView.INVALID_POSITION)
+            outState.putInt(EXTRA_SELECTED_ITEM_POSITION, selectedItemPosition);
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -62,8 +69,10 @@ public class DetailFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (MainActivity.mTwoPane)
-            setDefaultMasterDetailView();
+
+        if (savedInstanceState == null)
+            if (MainActivity.mTwoPane)
+                setDefaultMasterDetailView();
     }
 
     @Override
@@ -71,11 +80,8 @@ public class DetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
-        adapter = new TermListAdapter(this);
-        if (getArguments() != null) {
+        if (getArguments() != null)
             mDetailList = getArguments().getStringArrayList(ARG_DETAIL_LIST);
-            adapter.setTermsList(mDetailList);
-        }
     }
 
     @Override
@@ -85,27 +91,35 @@ public class DetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
 
         listView = (ListView) rootView.findViewById(R.id.listview);
+        adapter = new TermListAdapter(this);
+        adapter.setTermsList(mDetailList);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                onDetailFragmentInteraction((String)listView.getItemAtPosition(i));
+                onDetailFragmentInteraction((String) listView.getItemAtPosition(i));
+                selectedItemPosition = i;
             }
         });
+
+        if (savedInstanceState != null && savedInstanceState.containsKey(EXTRA_SELECTED_ITEM_POSITION)) {
+            selectedItemPosition = savedInstanceState.getInt(EXTRA_SELECTED_ITEM_POSITION);
+            if (selectedItemPosition != ListView.INVALID_POSITION) {
+                listView.smoothScrollToPosition(selectedItemPosition);
+            }
+        }
 
         return rootView;
     }
 
     public void onDetailFragmentInteraction(String term) {
         if (mListener != null) {
-            Log.d("DETAILFRAGMENT", "onDetailFragmentInteraction");
             mListener.onDetailFragmentInteraction(term);
         }
     }
 
     public interface OnDetailFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onDetailFragmentInteraction(String term);
     }
 }

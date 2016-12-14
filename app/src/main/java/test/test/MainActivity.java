@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements
 
         if (findViewById(R.id.system_detail_container) != null) {
             mTwoPane = true;
-            if (savedInstanceState == null) {
+         /*   if (savedInstanceState == null) {
                 getSupportFragmentManager().beginTransaction()
                         .add(R.id.system_detail_container, new DetailFragment(), DETAILFRAGMENT_TAG)
                         .commit();
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements
                             .add(R.id.result_detail_container, new ResultFragment(), RESULTFRAGMENT_TAG)
                             .commit();
                 }
-            }
+            }*/
         } else {
             mTwoPane = false;
             getSupportActionBar().setElevation(0f);
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements
         if (mTwoPane) {
             ResultFragment fragment = ResultFragment.newInstance(term);
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.result_detail_container, fragment, "RFTAG")
+                    .replace(R.id.result_detail_container, fragment, RESULTFRAGMENT_TAG)
                     .commit();
         } else {
             Intent i = new Intent(this, ResultActivity.class);

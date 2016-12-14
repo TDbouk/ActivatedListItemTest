@@ -34,8 +34,9 @@ public class SystemsFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (MainActivity.mTwoPane)
-            setDefaultMasterDetailView();
+        if (savedInstanceState == null)
+            if (MainActivity.mTwoPane)
+                setDefaultMasterDetailView();
     }
 
     @Override
@@ -66,6 +67,7 @@ public class SystemsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
         b1 = (Button) rootView.findViewById(R.id.b1);
@@ -74,9 +76,9 @@ public class SystemsFragment extends Fragment {
         final ArrayList<String> list1 = new ArrayList<>();
         final ArrayList<String> list2 = new ArrayList<>();
 
-        for (int i = 0; i < 50; i++) {
-            list1.add("Hello" + i);
-            list2.add("World" + i);
+        for (int i = 0; i < 100; i++) {
+            list1.add("Hello " + i);
+            list2.add("World " + i);
         }
 
         b1.setOnClickListener(new View.OnClickListener() {
@@ -85,13 +87,13 @@ public class SystemsFragment extends Fragment {
                 onFragmentInteraction(list1);
             }
         });
-
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onFragmentInteraction(list2);
             }
         });
+
         return rootView;
     }
 
